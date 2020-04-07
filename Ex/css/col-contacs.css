@@ -1,0 +1,61 @@
+/* COL-CONTACTS ---------------------------------------- */
+.col-contacts-container{
+  width: 100%;
+  height: 100%;
+}
+
+/* my profile */
+.my-profile{
+  width: 100%;
+  height: 70px;
+
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  cursor: pointer;
+}
+
+.immagine, .icone{
+  height: 100%;
+  align-items: center;
+}
+
+.icone{
+  margin-right: 15px;
+}
+.profile-img-top{
+  margin: calc((70px - 50px)/2);
+}
+
+.icone .fas{
+  margin: auto 10px;
+  color: rgb(177, 177, 177);
+  font-size: 22px;
+}
+
+
+
+
+/* ricevi-notifiche */
+.ricevi-notifiche{
+  width: 100%;
+  height: 80px;
+
+  background: #8EDAFC;
+}
+
+/* ricevi-notifiche */
+.cerca{
+  width: 100%;
+  height: 50px;
+
+  background: #fafafa;
+}
+
+/* contacts */
+.contacts{
+  height: calc(100% - 70px - 50px - 80px);
+  background: #fff;
+  overflow-y: scroll;
+}
