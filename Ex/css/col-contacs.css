@@ -70,13 +70,55 @@
 }
 
 
-/* ricevi-notifiche */
+/* cerca */
 .cerca{
   width: 100%;
   height: 50px;
 
+  justify-content: center;
+  align-items: center;
   background: #fafafa;
 }
+
+.container-ricerca{
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
+
+  background: white;
+  border-radius: 2px;
+  border: solid 0.4px lightgray;
+}
+
+.cerca .icona{
+  width: 15%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.cerca .fa-search{
+  color: #B6B9BB;
+}
+
+.input{
+  width: 85%;
+  height: 100%;
+
+  align-items: center;
+}
+
+#cerca-chat{
+  width: calc(100% - 14px);
+  height: calc(100% - 1px);
+  padding: 0px 7px;
+  margin: 0;
+  border: 0;
+
+  font-family: inherit;
+  color: #B6B9BB;
+}
+
 
 /* contacts */
 .contacts{
