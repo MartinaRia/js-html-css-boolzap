@@ -35,15 +35,40 @@
 }
 
 
-
-
 /* ricevi-notifiche */
 .ricevi-notifiche{
   width: 100%;
   height: 80px;
 
+  align-items: center;
   background: #8EDAFC;
 }
+
+.ricevi-notifiche-icona{
+  width: 50px;
+  height: 50px;
+  margin: auto 0 auto 20px;
+
+  background: #F2FBFF;
+  border-radius: 100%;
+  text-align: center;
+  color: #8EDAFC;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.ricevi-notifiche-text{
+  margin-left: 10px;
+}
+
+.ricevi-notifiche-text h4{
+  font-weight: 400;
+}
+.ricevi-notifiche-text a{
+  color: #4F7485;
+  font-size: 13.5px;
+}
+
 
 /* ricevi-notifiche */
 .cerca{
