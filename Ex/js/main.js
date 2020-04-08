@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
     //VARIABILI ======================================================
 
-    //per azione 3 e 4
+    //per azione 2 e 3
     var ora = new Date().getHours();
     var minuti = new Date().getMinutes();
 
@@ -33,7 +33,7 @@ $( document ).ready(function() {
       );
     }
 
-    // per azione 3 -----------------------
+    // per azione 2 -----------------------
     function insertMessage() {
       var messaggio = $('#typing-msg').val(); //prendi il valore inserito nell'input #typing-msg
 
@@ -41,10 +41,10 @@ $( document ).ready(function() {
       $('.tread').append('<div class="messaggio-utente"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> </div> </div> </div> </div>');
       $('#typing-msg').val('');
 
-      showIconaInfo()
+      showIconaInfo();
     }
 
-    // per azione 4 -----------------------
+    // per azione 3 -----------------------
     function insertRandomReply(){
       var randomReply = ['ok', 'who are you?', 'wtf?!', 'Where have you been? I ve missed you', 'Look who s back!', 'Thank you!', 'no way!', 'sure!', 'i ll use my super power to help you!'];
       var reply = randomReply[Math.floor(Math.random() * randomReply.length)]; //prendi una risposta random tra quelle dell'array
@@ -52,7 +52,7 @@ $( document ).ready(function() {
       // appendi il div con la risposta random nel tread
       $('.tread').append('<div class="messaggio-chat-guy"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="chat-guy-info">  </div> </div> </div>');
 
-      showIconaInfo()
+      showIconaInfo();
     }
 
     // [inutilizzata] -------------------------
@@ -86,20 +86,19 @@ $( document ).ready(function() {
     );
 
 
-    // 3. inserisci messaggio al click dell'aeroplano
+    // 2. inserisci messaggio al click dell'aeroplano
     $('.invia .fa-paper-plane').click(
       function (){
 
         insertMessage();
 
-        // 4. risposta automatica di chat guy dopo 1 secondo dall'invio del msg di UTENTE
+        // 3. risposta automatica di chat guy dopo 1 secondo dall'invio del msg di UTENTE
         setTimeout(insertRandomReply, 1000);
       }
     );
 
-    // 3.1 stessa cosa del punto 3 ma l'evento è scatenzato al keypress invece che al click
-    $("#typing-msg").keypress(
-      function() {
+    // 2.1 stessa cosa del punto 2 ma l'evento è scatenzato al keypress invece che al click
+    $("#typing-msg").keypress(function() {
         if (event.keyCode === 13) { //il 13 corrisponde al tasto Enter
           insertMessage();
           setTimeout(insertRandomReply, 1000);
@@ -107,77 +106,29 @@ $( document ).ready(function() {
         }
     });
 
-    // 2. gestisci filtro contatti (div cerca)
-      var stringa1, stringa2;
-
-      //ogni volta che viene premuto un tasto(qualsiasi della tastiera) nel campo 'cerca'
-      $('#cerca-chat').keypress(
+    // 3. gestisci filtro contatti (div cerca)
+      $('#cerca-chat').keyup( //ogni volta che viene premuto un tasto(qualsiasi della tastiera) nel campo 'cerca'
         function(){
-          var code = event.which //scopri il codice del tasto premuto
-          var lettera = String.fromCharCode(code); //converti il codice in una lettera
-          var valInputMenoUltimaLettera = $('#cerca-chat').val();
-          stringa1 = valInputMenoUltimaLettera + lettera // salvarmi input utente in campo del filtro (stringa1)
+          var stringa1 = $('#cerca-chat').val().toLowerCase(); // salvarmi input utente in campo del filtro (stringa1)
           console.log(stringa1);
 
           // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
           $('.contact-name').each(
             function(){
-              stringa2 = $(this).text() //salvo in una var il valore del testo del nome nel contatto (stringa2)
+              var stringa2 = $(this).text().toLowerCase(); //salvo in una var il valore del testo del nome nel contatto (stringa2)
               console.log(stringa2);
 
-              var confronto = stringa2.includes(stringa1) // confronto per vedere se la stringa inserita nell'input è inclusa nel nome del contatto stringa2.includes(stringa1)
+              var confronto = stringa2.includes(stringa1); // confronto per vedere se la stringa inserita nell'input è inclusa nel nome del contatto stringa2.includes(stringa1)
               console.log(confronto);
 
               if (confronto) { //se l'occorenza è stata trovata lascio il blocco di contatto visibile
-                $(this).parents('.contact-conainer').show()
+
               } else { // altrimenti lo rendo non visibile (this)
-                $(this).parents('.contact-conainer').hide()
+                $(this).parents('.contact-conainer').hide();
               }
 
             }
-          )
+          );
 
         }
-      )
-
-      $('#cerca-chat').keypress(
-        function(){
-          var code = event.which //scopri il codice del tasto premuto
-          var lettera = String.fromCharCode(code); //converti il codice in una lettera
-          var valInputMenoUltimaLettera = $('#cerca-chat').val();
-          stringa1 = valInputMenoUltimaLettera + lettera // salvarmi input utente in campo del filtro (stringa1)
-          console.log(stringa1);
-
-          // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
-          $('.contact-name').each(
-            function(){
-              stringa2 = $(this).text() //salvo in una var il valore del testo del nome nel contatto (stringa2)
-              console.log(stringa2);
-
-              var confronto = stringa2.includes(stringa1) // confronto per vedere se la stringa inserita nell'input è inclusa nel nome del contatto stringa2.includes(stringa1)
-              console.log(confronto);
-
-              if (confronto) { //se l'occorenza è stata trovata lascio il blocco di contatto visibile
-                $(this).parents('.contact-conainer').show()
-              } else { // altrimenti lo rendo non visibile (this)
-                $(this).parents('.contact-conainer').hide()
-              }
-
-            }
-          )
-
-        }
-      )
-
-
-
-
-
-
-
-
-
-
-
-
-}); //doc ready
+      );
