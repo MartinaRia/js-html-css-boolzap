@@ -49,7 +49,7 @@ $( document ).ready(function() {
 
 
     // AZIONI ===========================================================
-    //1. apparizione e sparizione icona aeroplano
+    // 1. apparizione e sparizione icona aeroplano
     $('#typing-msg').focusin(
       showSubmitIcon
     );
@@ -68,7 +68,7 @@ $( document ).ready(function() {
       hideSubmitIcon
     );
 
-    //2. apparizione icona-info con hover text-container [NOT WORKING!!!!]
+    // 2. apparizione icona-info con hover text-container [NOT WORKING!!!!]
     $('.icona-info').hide();
     $('.text-container').hover(
       function(){
@@ -92,13 +92,54 @@ $( document ).ready(function() {
     );
 
     // 3.1 stessa cosa del punto 3 ma l'evento è scatenzato al keypress invece che al click
-    $("#typing-msg").keypress(function(event) {
+    $("#typing-msg").keypress(function() {
         if (event.keyCode === 13) { //il 13 corrisponde al tasto Enter
           insertMessage();
           setTimeout(insertRandomReply, 1000);
           hideSubmitIcon();
         }
     });
+
+    // 5. cestisci filtro contatti (div cerca)
+      var stringa1, stringa2;
+
+      //ogni volta che viene premut un tasto nel campo 'cerca'
+      $('#cerca-chat').keypress(
+        function(){
+          var code = event.which //scopri il codice del tasto premuto
+          var lettera = String.fromCharCode(code); //converti il codice in una lettera
+          var valInputMenoUltimaLettera = $('#cerca-chat').val();
+          stringa1 = valInputMenoUltimaLettera + lettera // salvarmi input utente in campo del filtro (stringa1)
+          console.log(stringa1);
+
+          // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
+          $('.contact-name').each(
+            function(){
+              stringa2 = $(this).text() //salvo in una var il valore del testo del nome nel contatto (stringa2)
+              console.log(stringa2);
+
+              var confronto = stringa2.includes(stringa1) // confronto per vedere se la stringa inserita nell'input è inclusa nel nome del contatto stringa2.includes(stringa1)
+              console.log(confronto);
+
+              if (confronto) { //se l'occorenza è stata trovata lascio il blocco di contatto visibile
+                $(this).parents('.contact-conainer').show()
+              } else { // altrimenti lo rendo non visibile (this)
+                $(this).parents('.contact-conainer').hide()
+              }
+
+            }
+          )
+
+        }
+      )
+
+
+
+
+
+          //
+
+
 
 
 
