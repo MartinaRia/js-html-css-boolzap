@@ -13,12 +13,12 @@ $( document ).ready(function() {
     function showSubmitIcon(){
       $('.invia .fa-microphone').hide();
       $('.invia .fa-paper-plane').show();
-    };
+    }
 
     function hideSubmitIcon(){
       $('.invia .fa-paper-plane').hide();
       $('.invia .fa-microphone').show();
-    };
+    }
 
     // per azione 3 -----------------------
     function insertMessage() {
@@ -27,7 +27,7 @@ $( document ).ready(function() {
       // appendi un div con il messaggio inserito nel tread
       $('.tread').append('<div class="messaggio-utente"> <div class="text-container"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> </div> </div> </div> </div>');
       $('#typing-msg').val('');
-    };
+    }
 
     // per azione 4 -----------------------
     function insertRandomReply(){
@@ -36,16 +36,16 @@ $( document ).ready(function() {
 
       // appendi il div con la risposta random nel tread
       $('.tread').append('<div class="messaggio-chat-guy"> <div class="chat-guy-text-container"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="chat-guy-info">  </div> </div> </div>');
-    };
+    }
 
-    // [INUTILIZZATA] -------------------------
+    // [inutilizzata] -------------------------
     function getTheTime(selectorOra, selectorMinuti){
       var ora = new Date().getHours();
       var minuti = new Date().getMinutes();
 
       selectorOra.html(ora);
       selectorMinuti.html(minuti);
-    };
+    }
 
 
     // AZIONI ===========================================================
@@ -57,16 +57,16 @@ $( document ).ready(function() {
     $('#typing-msg').focusout(
       function(){
         if ($(this).val() == '') {
-          hideSubmitIcon()
+          hideSubmitIcon();
         } else {
-          showSubmitIcon()
+          showSubmitIcon();
         }
       }
     );
 
     $('.invia .fa-paper-plane').click(
       hideSubmitIcon
-    )
+    );
 
     //2. apparizione icona-info con hover text-container [NOT WORKING!!!!]
     $('.icona-info').hide();
@@ -96,9 +96,11 @@ $( document ).ready(function() {
         if (event.keyCode === 13) { //il 13 corrisponde al tasto Enter
           insertMessage();
           setTimeout(insertRandomReply, 1000);
-          hideSubmitIcon()
+          hideSubmitIcon();
         }
     });
+
+
 
 
 
