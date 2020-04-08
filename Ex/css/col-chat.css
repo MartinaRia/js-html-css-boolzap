@@ -42,6 +42,8 @@
   overflow-y: scroll;
 }
 
+/* messaggio utente */
+
 .messaggio-utente::after{
   content: "";
   clear: both;
@@ -84,7 +86,31 @@
   right: 6px;
   color: #B6B9BB;
   cursor: pointer;
-  /* display: none; */
+}
+
+/* messaggio chat guy */
+.chat-guy-text-container{
+  min-width: 20%;
+  max-width: 60%;
+  position: relative;
+  margin: 5px 0;
+  padding: 15px 15px 20px 15px;
+
+  background: white;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.chat-guy-testo-messaggio{
+  width: 100%
+}
+
+.chat-guy-message-time{
+  position: absolute;
+  bottom: 5px;
+  right: 6px;
+  font-size: 10px;
+  color: #B6B9BB;
 }
 
 
