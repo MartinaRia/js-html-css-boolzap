@@ -21,6 +21,7 @@ $( document ).ready(function() {
     }
 
     // per funzione insertMessage e insertRandomReply ---------
+
     function showIconaInfo(){
       $('.icona-info').hide();
       $('.text-container-i').hover(
@@ -28,7 +29,12 @@ $( document ).ready(function() {
           $('.icona-info', this).fadeIn('fast', 'linear');
         },
         function(){
-          $('.icona-info', this).fadeOut('fast', 'linear');
+          if ($(".info", this).is(":visible")) {
+            $('.icona-info', this).show();
+          } else {
+            $('.icona-info', this).fadeOut('fast', 'linear');
+          }
+
         }
       );
     }
@@ -38,10 +44,10 @@ $( document ).ready(function() {
       var messaggio = $('#typing-msg').val(); //prendi il valore inserito nell'input #typing-msg
 
       // appendi un div con il messaggio inserito nel tread
-      $('.tread').append('<div class="messaggio-utente"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> </div> </div> </div> </div>');
+      $('.tread').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
       $('#typing-msg').val('');
 
-      showIconaInfo();
+      showIconaInfo(); //[alternativa all' EVENT DELEGATION]
     }
 
     // per azione 3 -----------------------
@@ -50,7 +56,7 @@ $( document ).ready(function() {
       var reply = randomReply[Math.floor(Math.random() * randomReply.length)]; //prendi una risposta random tra quelle dell'array
 
       // appendi il div con la risposta random nel tread
-      $('.tread').append('<div class="messaggio-chat-guy"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="chat-guy-info">  </div> </div> </div>');
+      $('.tread').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
 
       showIconaInfo();
     }
@@ -126,11 +132,25 @@ $( document ).ready(function() {
                 $(this).parents('.contact-conainer').hide();
               }
 
-            }
-          );
+            });
 
+        });
+
+      // 5.1 Mostra messaggio 'cancella' al click di icona info [EVENT DELEGATION]
+      $('.tread').on('click', '.fa-chevron-down',
+        function(){
+          $(this).siblings().toggle();
         }
       );
+
+      //5.2 Cancella messaggio al click su 'delete-msg' [EVENT DELEGATION]
+      $('.tread').on('click', '.delete-msg',
+        function () {
+          $(this).parents('.messaggio').hide();
+        }
+      );
+
+
 
 
 

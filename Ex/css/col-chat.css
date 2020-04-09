@@ -87,6 +87,23 @@
   color: #B6B9BB;
   cursor: pointer;
 }
+ .info{
+  position: absolute;
+  top: 20px;
+  right: 6px;
+  background: white;
+  font-family: inherit;
+  box-shadow: 0px 0px 6px 2px #00000033;
+  font-size: small;
+  color: black;
+  padding: 10px;
+  white-space: nowrap;
+  display: none;
+ }
+
+ .delete-msg{
+   cursor: pointer;
+ }
 
 /* messaggio chat guy */
 .messaggio-chat-guy::after{
