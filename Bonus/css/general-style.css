@@ -1,0 +1,103 @@
+body{
+  background: #d7dbd7;
+  font-family: 'Lato', sans-serif;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.flex-container{
+  display: flex;
+}
+
+/* BACKGROUND ---------------------------------------- */
+.container{
+  width: 100%;
+  min-width: 900px;
+  height: 100vh;
+  position: relative;
+}
+
+.green-strip{
+  width: 100%;
+  height: 10vh;
+
+  background: #009688;
+}
+
+.main-window{
+  width: 80%;
+  min-width: 900px;
+  height: 95%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #eaeaea;
+  box-shadow: 0px 1px 3px 0px #00000021;
+}
+
+/* MAIN-WINDOW ---------------------------------------- */
+.main-window-container{
+  width: 100%;
+  height: 100%;
+}
+
+.col-contacts{
+  /*margin-right: 0.5px;*/
+  width: 34.9%;
+  height: 100%;
+}
+
+.col-chat{
+  width: 65%;
+  height: 100%;
+}
+
+/* HEADER ------------------------*/
+.header{
+  width: 100%;
+  height: 70px;
+
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  cursor: pointer;
+}
+
+.immagine, .icone{
+  height: 100%;
+  align-items: center;
+}
+
+.icone{
+  margin-right: 15px;
+}
+.profile-img-top{
+  margin: calc((70px - 50px)/2);
+}
+
+.icone .fas{
+  margin: auto 10px;
+  color: rgb(177, 177, 177);
+  font-size: 22px;
+}
+
+
+/* GENERAL ------- */
+.profile-img-top{
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.profile-img-contacts{
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+}

@@ -21,7 +21,6 @@ $( document ).ready(function() {
     }
 
     // per funzione insertMessage e insertRandomReply ---------
-
     function showIconaInfo(){
       $('.icona-info').hide();
       $('.text-container-i').hover(
@@ -44,7 +43,7 @@ $( document ).ready(function() {
       var messaggio = $('#typing-msg').val(); //prendi il valore inserito nell'input #typing-msg
 
       // appendi un div con il messaggio inserito nel tread
-      $('.tread').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
+      $('.tread.active').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
       $('#typing-msg').val('');
 
       showIconaInfo(); //[alternativa all' EVENT DELEGATION]
@@ -56,7 +55,7 @@ $( document ).ready(function() {
       var reply = randomReply[Math.floor(Math.random() * randomReply.length)]; //prendi una risposta random tra quelle dell'array
 
       // appendi il div con la risposta random nel tread
-      $('.tread').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
+      $('.tread.active').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
 
       showIconaInfo();
     }
@@ -72,7 +71,7 @@ $( document ).ready(function() {
 
 
     // AZIONI ===========================================================
-    // 1. apparizione e sparizione icona aeroplano
+    // ---------------- 1. apparizione e sparizione icona aeroplano
     $('#typing-msg').focusin(
       showSubmitIcon
     );
@@ -92,18 +91,18 @@ $( document ).ready(function() {
     );
 
 
-    // 2. inserisci messaggio al click dell'aeroplano
+    // ---------------- 2. inserisci messaggio al click dell'aeroplano
     $('.invia .fa-paper-plane').click(
       function (){
 
         insertMessage();
 
-        // 3. risposta automatica di chat guy dopo 1 secondo dall'invio del msg di UTENTE
+        // ---------------- 3. risposta automatica di chat guy dopo 1 secondo dall'invio del msg di UTENTE
         setTimeout(insertRandomReply, 1000);
       }
     );
 
-    // 2.1 stessa cosa del punto 2 ma l'evento è scatenzato al keypress invece che al click
+    // ---------------- 2.1 stessa cosa del punto 2 ma l'evento è scatenzato al keypress invece che al click
     $("#typing-msg").keypress(
       function() {
         showSubmitIcon();
@@ -114,7 +113,7 @@ $( document ).ready(function() {
         }
     });
 
-    // 4. gestisci filtro contatti (div cerca)
+    // ---------------- 4. gestisci filtro contatti (div cerca)
     $('#cerca-chat').keyup( //ogni volta che viene premuto un tasto(qualsiasi della tastiera) nel campo 'cerca'
         function(){
           var stringa1 = $('#cerca-chat').val().toLowerCase(); // salvarmi input utente in campo del filtro (stringa1)
@@ -136,17 +135,41 @@ $( document ).ready(function() {
 
         });
 
-      // 5.1 Mostra messaggio 'cancella' al click di icona info [EVENT DELEGATION]
+      // ---------------- 5.1 Mostra messaggio 'cancella' al click di icona info [EVENT DELEGATION]
       $('.tread').on('click', '.fa-chevron-down',
         function(){
           $(this).siblings().toggle();
         }
       );
 
-      //5.2 Cancella messaggio al click su 'delete-msg' [EVENT DELEGATION]
+      //---------------- 5.2 Cancella messaggio al click su 'delete-msg' [EVENT DELEGATION]
       $('.tread').on('click', '.delete-msg',
         function () {
           $(this).parents('.messaggio').hide();
+        }
+      );
+
+      //---------------- 6. //Click sul contatto mostra la conversazione del contatto cliccato
+
+
+
+      $('.contact-conainer').click(
+        function() {
+          //assegna classe active al contatto selezionato (cambio background)
+          $('.contact-conainer').removeClass('active');
+          $(this).addClass('active');
+
+          var activeContactIndx = $(this).index(); // modo alternativo di scrivere $('.contact-conainer').index(this);
+          // $('.tread').hide();
+          // $('.tread.active').show();
+          var oldTreadActive = $('.tread.active')
+          oldTreadActive.removeClass('active');
+          var newActive = $('.tread').eq(activeContactIndx).addClass('active');
+          newActive.show()
+          $('.tread').not('.tread.active').hide()
+
+
+
         }
       );
 
