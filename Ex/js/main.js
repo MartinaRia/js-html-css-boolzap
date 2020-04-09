@@ -1,3 +1,14 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 $( document ).ready(function() {
     console.log( "tutto bene fin ora!" );
 
@@ -150,9 +161,6 @@ $( document ).ready(function() {
       );
 
       //---------------- 6. //Click sul contatto mostra la conversazione del contatto cliccato
-
-
-
       $('.contact-conainer').click(
         function() {
           //assegna classe active al contatto selezionato (cambio background)
@@ -160,26 +168,15 @@ $( document ).ready(function() {
           $(this).addClass('active');
 
           var activeContactIndx = $(this).index(); // modo alternativo di scrivere $('.contact-conainer').index(this);
-          
-          var oldTreadActive = $('.tread.active')
-          oldTreadActive.removeClass('active');
-          var newActive = $('.tread').eq(activeContactIndx).addClass('active');
-          newActive.show()
-          $('.tread').not('.tread.active').hide()
 
-
+          var oldTreadActive = $('.tread.active'); //tieni traccia del trad attivo
+          oldTreadActive.removeClass('active'); // rimuovi la classe attivo dal div attivo precedentemente
+          var newActive = $('.tread').eq(activeContactIndx).addClass('active'); // individua il tread con stesso index del contatto selezionato
+          newActive.show(); //display la tread appena individuata e segnata come attiva
+          $('.tread').not('.tread.active').hide(); // nascondi tutte le treads tranne quella attiva
 
         }
       );
-
-
-
-
-
-
-
-
-
 
 
 

@@ -151,25 +151,32 @@ $( document ).ready(function() {
 
       //---------------- 6. //Click sul contatto mostra la conversazione del contatto cliccato
 
-      // creazione treads
+      // Creazione treads (tante quanti sono i contatti)
       for (var i = 1; i < $('.contact-conainer').length ; i++) {
         $('.chat').append('<div class="tread"> </div>')
       }
 
-      $('.contact-conainer').click(
+      $('.contact-conainer').click( // event delegation not required
         function() {
-          //assegna classe active al contatto selezionato (cambia background)
+          // A. Cambio colore background del contatto attivo -------
+          //assegna classe active al contatto selezionato (cambio background)
           $('.contact-conainer').removeClass('active');
           $(this).addClass('active');
+          // salvo in una var l'index del contatto attivo
+          var activeContactIndx = $(this).index(); // [modo alternativo di scrivere $('.contact-conainer').index(this);]
 
-          var activeContactIndx = $(this).index(); // modo alternativo di scrivere $('.contact-conainer').index(this);
+          // B. Mostro il contatto selezionato nell'header della tread attiva
+          var activeContactName = $('.contact-name', this).html(); // Salvo il nome del contatto attivo
+          var activeContactPic = $('.profile-img-contacts', this).attr('src'); // Salvo la foto del contatto attivo
+          $('.chatting-guy-name h3').html(activeContactName); // ignetto nome nel rispettivo campo dell header
+          $('.chatting-guy .profile-img-top').attr('src', activeContactPic); // ignetto foto nel nome nel rispettivo campo dell header
 
-          var oldTreadActive = $('.tread.active')
-          oldTreadActive.removeClass('active');
-          var newActive = $('.tread').eq(activeContactIndx).addClass('active');
-          newActive.show()
-          $('.tread').not('.tread.active').hide()
-
+          // C. Mostro la chat relativa al contatto selezionato -------
+          var oldTreadActive = $('.tread.active'); //tieni traccia del tread attivo
+          oldTreadActive.removeClass('active'); // rimuovi la classe attivo dal div attivo precedentemente
+          var newActive = $('.tread').eq(activeContactIndx).addClass('active'); // individua il tread con stesso index del contatto selezionato
+          newActive.show(); //display la tread appena individuata e segnata come attiva
+          $('.tread').not('.tread.active').hide(); // nascondi tutte le treads tranne quella attiva
 
         }
       );
