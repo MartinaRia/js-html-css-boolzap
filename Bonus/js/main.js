@@ -33,7 +33,6 @@ $( document ).ready(function() {
           } else {
             $('.icona-info', this).fadeOut('fast', 'linear');
           }
-
         }
       );
     }
@@ -153,19 +152,19 @@ $( document ).ready(function() {
 
       // Creazione treads (tante quanti sono i contatti)
       for (var i = 1; i < $('.contact-conainer').length ; i++) {
-        $('.chat').append('<div class="tread"> </div>')
+        $('.chat').append('<div class="tread"> </div>');
       }
 
       $('.contact-conainer').click( // event delegation not required
         function() {
           // A. Cambio colore background del contatto attivo -------
-          //assegna classe active al contatto selezionato (cambio background)
+          //assegna classe active al contatto selezionato
           $('.contact-conainer').removeClass('active');
           $(this).addClass('active');
           // salvo in una var l'index del contatto attivo
           var activeContactIndx = $(this).index(); // [modo alternativo di scrivere $('.contact-conainer').index(this);]
 
-          // B. Mostro il contatto selezionato nell'header della tread attiva
+          // B. Mostro il contatto selezionato nell'header della tread attiva -----
           var activeContactName = $('.contact-name', this).html(); // Salvo il nome del contatto attivo
           var activeContactPic = $('.profile-img-contacts', this).attr('src'); // Salvo la foto del contatto attivo
           $('.chatting-guy-name h3').html(activeContactName); // ignetto nome nel rispettivo campo dell header
@@ -177,17 +176,8 @@ $( document ).ready(function() {
           var newActive = $('.tread').eq(activeContactIndx).addClass('active'); // individua il tread con stesso index del contatto selezionato
           newActive.show(); //display la tread appena individuata e segnata come attiva
           $('.tread').not('.tread.active').hide(); // nascondi tutte le treads tranne quella attiva
-
         }
       );
-
-
-
-
-
-
-
-
 
 
 
