@@ -43,7 +43,7 @@ $( document ).ready(function() {
       var messaggio = $('#typing-msg').val(); //prendi il valore inserito nell'input #typing-msg
 
       // appendi un div con il messaggio inserito nel tread
-      $('.tread').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
+      $('.tread.active').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
       $('#typing-msg').val('');
 
       showIconaInfo(); //[alternativa all' EVENT DELEGATION]
@@ -55,7 +55,7 @@ $( document ).ready(function() {
       var reply = randomReply[Math.floor(Math.random() * randomReply.length)]; //prendi una risposta random tra quelle dell'array
 
       // appendi il div con la risposta random nel tread
-      $('.tread').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
+      $('.tread.active').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
 
       showIconaInfo();
     }
@@ -136,29 +136,39 @@ $( document ).ready(function() {
         });
 
       // ---------------- 5.1 Mostra messaggio 'cancella' al click di icona info [EVENT DELEGATION]
-      $('.tread').on('click', '.fa-chevron-down',
+      $('.chat').on('click', '.fa-chevron-down',
         function(){
           $(this).siblings().toggle();
         }
       );
 
       //---------------- 5.2 Cancella messaggio al click su 'delete-msg' [EVENT DELEGATION]
-      $('.tread').on('click', '.delete-msg',
+      $('.chat').on('click', '.delete-msg',
         function () {
           $(this).parents('.messaggio').hide();
         }
       );
 
       //---------------- 6. //Click sul contatto mostra la conversazione del contatto cliccato
+
+      // creazione treads
+      for (var i = 1; i < $('.contact-conainer').length ; i++) {
+        $('.chat').append('<div class="tread"> </div>')
+      }
+
       $('.contact-conainer').click(
         function() {
-          //assegna classe active al contatto selezionato
+          //assegna classe active al contatto selezionato (cambia background)
           $('.contact-conainer').removeClass('active');
           $(this).addClass('active');
 
-          var activeContactIndx = $(this).index();
+          var activeContactIndx = $(this).index(); // modo alternativo di scrivere $('.contact-conainer').index(this);
 
-          var chatToBeActivated =
+          var oldTreadActive = $('.tread.active')
+          oldTreadActive.removeClass('active');
+          var newActive = $('.tread').eq(activeContactIndx).addClass('active');
+          newActive.show()
+          $('.tread').not('.tread.active').hide()
 
 
         }

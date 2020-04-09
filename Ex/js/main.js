@@ -160,8 +160,7 @@ $( document ).ready(function() {
           $(this).addClass('active');
 
           var activeContactIndx = $(this).index(); // modo alternativo di scrivere $('.contact-conainer').index(this);
-          // $('.tread').hide();
-          // $('.tread.active').show();
+          
           var oldTreadActive = $('.tread.active')
           oldTreadActive.removeClass('active');
           var newActive = $('.tread').eq(activeContactIndx).addClass('active');
