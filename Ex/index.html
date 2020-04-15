@@ -272,27 +272,30 @@
               <!-- chat -->
               <div class="chat">
                 <div class="tread active">
-                  <!-- MESSAGGIO UTENTE
-                  <div class="messaggio-utente messaggio">
-                    <div class="text-container">
-
-                      <p class="testo-messaggio">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                      <p class="message-time">
-                        <span class="hour">13</span>
-                        :
-                        <span class="minute">29</span>
-                      </p>
-                      <div class="icona-info">
-                        <i class="fas fa-chevron-down"></i>
-                        <div class="info">
-                        <p class="delete-msg">Cancella Messaggio</p>
+                  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+                  <!-- template handlebars -->
+                  <script id="template-handlebars" type="text/x-handlebars-template">
+                    <div class="messaggio-utente messaggio">
+                      <div class="text-container">
+                        <p class="testo-messaggio">
+                          {{msgutente}}
+                        </p>
+                        <p class="message-time">
+                          <span class="hour">{{ore}}</span>
+                          :
+                          <span class="minute">{{minuti}}</span>
+                        </p>
+                        <div class="icona-info">
+                          <i class="fas fa-chevron-down"></i>
+                          <div class="info">
+                          <p class="delete-msg">Cancella Messaggio</p>
+                          </div>
                         </div>
-                      </div>
 
+                      </div>
                     </div>
-                  </div> -->
+                  </script>
+                  <!-- /template handlebars -->
 
 
                   <!-- MESSAGGIO CHAT GUY

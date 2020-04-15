@@ -1,14 +1,3 @@
-// Hello.
-//
-// This is JSHint, a tool that helps to detect errors and potential
-// problems in your JavaScript code.
-//
-// To start, simply enter some JavaScript anywhere on this page. Your
-// report will appear on the right side.
-//
-// Additionally, you can toggle specific options in the Configure
-// menu.
-
 $( document ).ready(function() {
     console.log( "tutto bene fin ora!" );
 
@@ -54,9 +43,26 @@ $( document ).ready(function() {
       var messaggio = $('#typing-msg').val(); //prendi il valore inserito nell'input #typing-msg
 
       // appendi un div con il messaggio inserito nel tread
-      $('.tread.active').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
-      $('#typing-msg').val('');
+      // $('.tread.active').append('<div class="messaggio-utente messaggio"> <div class="text-container text-container-i"> <p class="testo-messaggio">' + messaggio + '</p> <p class="message-time"> <span class="hour">' + ora + '</span>' + ':' + '<span class="minute">' + minuti + '</span> </p> <div class="icona-info"><i class="fas fa-chevron-down"></i><div class="info"><p class="delete-msg">Cancella Messaggio</p></div></div> </div> </div>');
 
+
+      //[INSERIMENTO MSG CON HANDLEBARS] ------ //
+      // Organizzare il template
+      var source = $(".template-handlebars").html(); //salvare il selettore del template in una var
+      var template = Handlebars.compile(source); // "il template da compilare è questo"
+
+      //organizzare i contenuti che popolano il template
+      var context = { //object
+        msgutente: messaggio, //vedi variabili sopra
+        ore: ora, //vedi variabili sopra
+        minuti: minuti //vedi variabili sopra
+      };
+      var html = template(context); //abbinare template a contenuto
+
+      $('.tread.active').append(html)
+      // --------------------------------------- //
+
+      $('#typing-msg').val(''); //pulisci input
       showIconaInfo(); //[alternativa all' EVENT DELEGATION]
     }
 

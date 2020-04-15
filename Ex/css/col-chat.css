@@ -30,16 +30,21 @@
   width: 100%;
   height: calc(100% - 140px);
 
+
   background: url('../img/bg.png');
   background-position: center;
   background-size: 70%;
 }
 
 .tread{
-  width: 100%;
+    width: 100%;
   height: 100%;
   padding: 5% 10%;
   overflow-y: scroll;
+  display: none;
+}
+.tread.active{
+  display: inline-block;
 }
 
 /* messaggio utente */
