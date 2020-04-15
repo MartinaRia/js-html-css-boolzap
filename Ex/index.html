@@ -272,11 +272,11 @@
               <!-- chat -->
               <div class="chat">
                 <div class="tread active">
-                  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-                  <!-- template handlebars -->
-                  <script id="template-handlebars" type="text/x-handlebars-template">
+
+                  <!-- template handlebars utente -->
+                  <script id="template-utente-handlebars" type="text/x-handlebars-template">
                     <div class="messaggio-utente messaggio">
-                      <div class="text-container">
+                      <div class="text-container text-container-i">
                         <p class="testo-messaggio">
                           {{msgutente}}
                         </p>
@@ -295,31 +295,36 @@
                       </div>
                     </div>
                   </script>
-                  <!-- /template handlebars -->
+                  <!-- /template handlebars utente -->
 
-
-                  <!-- MESSAGGIO CHAT GUY
-                  <div class="messaggio-chat-guy messaggio">
-                    <div class="chat-guy-text-container">
-
-                      <p class="chat-guy-testo-messaggio">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                      <p class="chat-guy-message-time">
-                        <span class="hour">13</span>
-                        :
-                        <span class="minute">29</span>
-                      </p>
+                  <!-- template handlebars chat guy -->
+                  <script id="template-chat-guy-handlebars" type="text/x-handlebars-template">
+                    <div class="messaggio-chat-guy messaggio">
+                      <div class="chat-guy-text-container text-container-i">
+                        <p class="chat-guy-testo-messaggio">
+                           {{reply}}
+                        </p>
+                        <p class="chat-guy-message-time">
+                          <span class="hour">
+                            {{ore}}
+                          </span>
+                          :
+                          <span class="minute">
+                            {{minuti}}
+                          </span>
+                        </p>
                       <div class="icona-info">
                         <i class="fas fa-chevron-down"></i>
                         <div class="info">
-                        <p class="delete-msg">Cancella Messaggio</p>
+                          <p class="delete-msg">
+                            Cancella Messaggio
+                          </p>
                         </div>
                       </div>
-
                     </div>
                   </div>
-                  -->
+                  </script>
+                  <!-- template handlebars chat guy -->
 
                 </div>
 
@@ -371,7 +376,7 @@
 
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <!-- link di riferimento -->

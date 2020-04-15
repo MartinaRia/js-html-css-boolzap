@@ -48,14 +48,14 @@ $( document ).ready(function() {
 
       //[INSERIMENTO MSG CON HANDLEBARS] ------ //
       // Organizzare il template
-      var source = $(".template-handlebars").html(); //salvare il selettore del template in una var
+      var source = $("#template-utente-handlebars").html(); //salvare il selettore del template in una var
       var template = Handlebars.compile(source); // "il template da compilare è questo"
 
       //organizzare i contenuti che popolano il template
       var context = { //object
-        msgutente: messaggio, //vedi variabili sopra
-        ore: ora, //vedi variabili sopra
-        minuti: minuti //vedi variabili sopra
+        'msgutente': messaggio, //vedi variabili sopra
+        'ore': ora, //vedi variabili sopra
+        'minuti': minuti //vedi variabili sopra
       };
       var html = template(context); //abbinare template a contenuto
 
@@ -71,8 +71,22 @@ $( document ).ready(function() {
       var randomReply = ['ok', 'who are you?', 'wtf?!', 'Where have you been? I ve missed you', 'Look who s back!', 'Thank you!', 'no way!', 'sure!', 'i ll use my super power to help you!'];
       var reply = randomReply[Math.floor(Math.random() * randomReply.length)]; //prendi una risposta random tra quelle dell'array
 
+      //[INSERIMENTO MSG CON HANDLEBARS] ------ //
+      // Organizzare il template
+      var source = $("#template-chat-guy-handlebars").html(); //salvare il selettore del template in una var
+      var template = Handlebars.compile(source); // "il template da compilare è questo"
+
+      //organizzare i contenuti che popolano il template
+      var context = { //object
+        'reply': reply, //vedi variabili sopra
+        'ore': ora, //vedi variabili sopra
+        'minuti': minuti //vedi variabili sopra
+      };
+      var html = template(context); //abbinare template a contenuto
+
       // appendi il div con la risposta random nel tread
-      $('.tread.active').append('<div class="messaggio-chat-guy messaggio"> <div class="chat-guy-text-container text-container-i"> <p class="chat-guy-testo-messaggio"> ' + reply + '</p><p class="chat-guy-message-time"> <span class="hour">' + ora + '</span>:<span class="minute">' + minuti + '</span> </p> <div class="icona-info"> <i class="fas fa-chevron-down"></i> <div class="info"> <p class="delete-msg">Cancella Messaggio</p> </div> </div> </div> </div>');
+      $('.tread.active').append(html);
+      // --------------------------------------- //
 
       showIconaInfo();
     }
